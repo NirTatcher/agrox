@@ -28,16 +28,12 @@ export default function Users() {
     // $(document).ready(function () {
     //     $('#USERS').DataTable();
     // }); 
-    const [isLoaded, setLoaded] = useState(false)
-    const [items, setItems] = useState("")
-    const el = useState("")
+    // const [items, setItems] = useState("")
     const [user, setUser] = useState("")
-    const [lastCommand, setLastCommand] = useState("")
-    const [shouldModal, setShouldModal] = useState(false)
     const [username, setUsername] = useState("")
     const [lastname, setLastname] = useState("")
     const [phonenumber, setPhoneNumber] = useState("")
-    useEffect(async () => {
+    useEffect(() => {
         
 
 
@@ -45,78 +41,81 @@ export default function Users() {
 
 
       
-        // async function fetchData() {
-        //     const response = await
-        //         fetch("https://cors-anywhere.herokuapp.com/apidev.tendermarket.co.il/api/accounts/GetUserDetails/?Userid=10", {
-        //             method: 'GET',
+        async function fetchData() {
+           
+                fetch("https://cors-anywhere.herokuapp.com/apidev.tendermarket.co.il/api/accounts/GetUserDetails/?Userid=10", {
+                    method: 'GET',
 
-        //             headers: new Headers({
-        //                 'Content-Type': 'application/json; charset=UTF-8',
-        //                 'Accept': 'application/json'
-        //             })
-        //         }).then(res => {
-        //             console.log(res);
-        //             return res.json()
-        //         }).then((result) => {
-        //             setLoaded(true)
-        //             setItems(result.Data)
-        //             console.log(result.Data)
-        //         },
-        //             (error) => {
-        //                 setLoaded(true)
-        //                 console.log(error);
-        //             }
-        //         )
-        // }
-        // fetchData()
+                    headers: new Headers({
+                        'Content-Type': 'application/json; charset=UTF-8',
+                        'Accept': 'application/json'
+                    })
+                }).then(res => {
+                    console.log(res);
+                    return res.json()
+                }).then((result) => {
+                    console.log(result);
+                    // setItems(result.Data)
+                    setUser(result.Data)
+                    setUsername(result.Data.Firstname)
+                    setLastname(result.Data.Lastname)
+                    setPhoneNumber(result.Data.Phonenumber)
+                },
+                    (error) => {
+                        alert(error +"error when trying to fetch user")
+                        setUser({
+                            Firstname: "Nir",
+                            Lastname: "Tatcher",
+                            Phonenumber: "0526362615"
+                        })
+                        setUsername("Nir")
+                        setLastname("Tatcher")
+                        setPhoneNumber("0526362615")
+                    }
+                )
+        }
+        fetchData()
         // $('#USERS').DataTable();
 
-        try {
+        // try {
 
 
-            // fetch(`https://api.allorigins.win/get?url=${encodeURIComponent('https://wikipedia.org')}`)
-            //         .then(response => {
-            //           if (response.ok) return response.json()
-            //           throw new Error('Network response was not ok.')
-            //         })
-            //         .then(data => console.log(data.contents));
-            fetch(`https://cors-anywhere.herokuapp.com/apidev.tendermarket.co.il/api/accounts/GetUserDetails/?Userid=10`, {
-                method: 'GET',
+           
+        //     fetch(`https://cors-anywhere.herokuapp.com/apidev.tendermarket.co.il/api/accounts/GetUserDetails/?Userid=10`, {
+        //         method: 'GET',
                 
-                // credentials:'same-origin',
-                headers: new Headers({
-                    'Content-Type': 'application/json; charset=UTF-8',
-                    'Accept': 'application/json',
-                })
-            }).then(res => {
-                console.log(res);
-                return res.json()
-            }).then((result) => {
-                setLoaded(true)
-                console.log(result);
-                setItems(result.Data)
-                setUser(result.Data)
-                setUsername(result.Data.Firstname)
-                setLastname(result.Data.Lastname)
-                setPhoneNumber(result.Data.Phonenumber)
-                console.log(result)
-            },
-                (error) => {
-                    setLoaded(true)
-                    alert(error +"error when trying to fetch user")
-                    setUser({
-                        Firstname: "Nir",
-                        Lastname: "Tatcher",
-                        Phonenumber: "0526362615"
-                    })
-                    setUsername("Nir")
-                    setLastname("Tatcher")
-                    setPhoneNumber("0526362615")
-                }
-            )
-        } catch (error) {
-            console.log(error)
-        }
+        //         // credentials:'same-origin',
+        //         headers: new Headers({
+        //             'Content-Type': 'application/json; charset=UTF-8',
+        //             'Accept': 'application/json',
+        //         })
+        //     }).then(res => {
+        //         console.log(res);
+        //         return res.json()
+        //     }).then((result) => {
+        //         console.log(result);
+        //         setItems(result.Data)
+        //         setUser(result.Data)
+        //         setUsername(result.Data.Firstname)
+        //         setLastname(result.Data.Lastname)
+        //         setPhoneNumber(result.Data.Phonenumber)
+        //         console.log(result)
+        //     },
+        //         (error) => {
+        //             alert(error +"error when trying to fetch user")
+        //             setUser({
+        //                 Firstname: "Nir",
+        //                 Lastname: "Tatcher",
+        //                 Phonenumber: "0526362615"
+        //             })
+        //             setUsername("Nir")
+        //             setLastname("Tatcher")
+        //             setPhoneNumber("0526362615")
+        //         }
+        //     )
+        // } catch (error) {
+        //     console.log(error)
+        // }
 
 
 
@@ -155,12 +154,10 @@ export default function Users() {
                 console.log(res);
                 return res.json()
             }).then((result) => {
-                //  setLoaded(true)
                 //  setItems(result.items)
                 alert(result +"Response")
             },
                 (error) => {
-                    setLoaded(true)
                     alert(error +"error when trying to update user")
                 }
             )
@@ -232,7 +229,7 @@ export default function Users() {
                                           }
                                         if (window.confirm('Are you sure you want to save this changes?')) {
                                             setEdit(false)
-                                            setLastCommand("V")
+                                          
                                             setUser({Firstname:username,Lastname:lastname,Phonenumber:phonenumber})
                                         
 
@@ -240,7 +237,7 @@ export default function Users() {
                                     }
                                     else {
                                         setEdit(false)
-                                        setLastCommand("V")
+                                       
                                     }
 
 
@@ -249,14 +246,14 @@ export default function Users() {
                                     if (user.Firstname !== username || user.Lastname !== lastname || user.Phonenumber !== phonenumber) {
                                         if (window.confirm('Are you sure you want to discard this changes?')) {
                                             setEdit(false)
-                                            setLastCommand("X")
+                                         
                                             
 
                                         }
                                     }
                                     else {
                                         setEdit(false)
-                                        setLastCommand("X")
+                                        
                                     }
                                 }} type="button" class="btn btn-danger">X</button>
                             </td>
@@ -322,7 +319,7 @@ export default function Users() {
                                             }
                                             if (window.confirm('Are you sure you want to save this changes?')) {
                                                 setEdit(false)
-                                                setLastCommand("V")
+                                              
                                                 setUser({Firstname:username,Lastname:lastname,Phonenumber:phonenumber})
                                             
     
@@ -330,21 +327,21 @@ export default function Users() {
                                         }
                                         else {
                                             setEdit(false)
-                                            setLastCommand("V")
+                                            
                                         }
                                 }} type="button" class="btn btn-success">V</button>
                                 <button onClick={() => {
                                          if (user.Firstname !== username || user.Lastname !== lastname || user.Phonenumber !== phonenumber) {
                                             if (window.confirm('Are you sure you want to discard this changes?')) {
                                                 setEdit(false)
-                                                setLastCommand("X")
+                                                
                                                 
     
                                             }
                                         }
                                         else {
                                             setEdit(false)
-                                            setLastCommand("X")
+                                        
                                         }
                                 }} type="button" class="btn btn-danger">X</button>
                             </tr>
