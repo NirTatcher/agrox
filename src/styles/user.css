@@ -1,0 +1,104 @@
+
+.Wrapper{
+    background-color: rgb(219, 239, 255);
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 0;
+}
+
+td{vertical-align: middle;}
+th{
+    color: #2C9947;
+    /* border-bottom: none; */
+    /* background-color: rgb(3, 206, 164); */
+    
+}
+thead{
+    border-bottom: none;
+  
+}
+tbody{
+    border-top: none;
+    background-color: transparent;
+}
+
+#USERS{
+    /* background-color: rgb(35, 191, 231);
+    background:   rgb(35, 191, 231); */
+    align-self: center  ;
+
+   
+}
+
+tr{
+    background-color: transparent;
+}
+.odd{
+    background-color: transparent;
+}
+.even{
+    background-color: transparent;
+}
+.sorting_1{
+    background-color: transparent;
+}
+@media screen and (max-width: 796px) {
+    
+    #USERS{
+    display: none;
+    flex-direction: column;
+    }
+    #USERS-Mobile{
+        visibility: visible;
+    }
+  }
+  
+  @media screen and (min-width:796px) {
+    #USERS-Mobile{
+        visibility: collapse;
+        
+    }
+  }
+
+
+    @media screen and (max-width:380px) {
+    .Wrapper{
+        width: 117%;
+        height: 117vh;
+    }
+  }
+
+  @media screen and (max-width:280px) {
+    .Wrapper{
+        width: 135%;
+        height: 135vh;
+    }
+  }
+
+.my_modal{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-color: transparent;
+    
+    display: flex;
+    justify-content: center
+}
+
+.modal_content{
+    position: absolute;
+    width: 50% ;
+    height: 50%;
+    background-color: honeydew;
+    align-self: center;
+   
+}
+
+#writtenLogo{
+    width: 185px;
+    margin-top: 0;
+}
